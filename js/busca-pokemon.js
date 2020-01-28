@@ -40,16 +40,17 @@ function paginaAnterior() {
 function montaHtml(resultado) {
     
     paginaAtual = resultado;
-    
-    var div = document.createElement("div");
+    document.querySelector("div").innerHTML = '';
     
     resultado.results.forEach(function(pokemon) {
-        var span = document.createElement("span");
-        span.textContent = pokemon.name;
-        
-        div.appendChild(span); 
+        chamadaRest("GET", pokemon.url, obtemImagem);
     });
-        
+}
+
+function obtemImagem(resultado) {
     
-    document.querySelector("body").appendChild(div);
+    var img = document.createElement("img");
+    img.src = resultado.sprites.front_default;
+    
+    document.querySelector("div").appendChild(img);
 }
