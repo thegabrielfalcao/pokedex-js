@@ -31,6 +31,7 @@ function proximaPagina() {
 }
 
 function paginaAnterior() {
+    
     if (paginaAtual.previous != null) {
         chamadaRest("GET", paginaAtual.previous, montaHtml);    
     }
@@ -49,8 +50,61 @@ function montaHtml(resultado) {
 
 function obtemImagem(resultado) {
     
+    var div = document.createElement("div");
+    
+    div.addEventListener("click", function() {
+        var classList = this.querySelector("table").classList;
+        if (classList.contains("invisivel")){
+            classList.remove("invisivel");
+        } else {
+            classList.add("invisivel");
+        }
+       
+    });
+    
     var img = document.createElement("img");
     img.src = resultado.sprites.front_default;
     
-    document.querySelector("div").appendChild(img);
+    var span = document.createElement("span");
+    span.textContent = resultado.name;
+    
+    var table = montarTabelaStatus(resultado);
+    
+    div.appendChild(img);
+    div.appendChild(span);
+    div.appendChild(table);
+    
+    document.querySelector("div").appendChild(div);
+}
+
+function montarTabelaStatus(resultado) {
+    
+    var table = document.createElement("table");
+    table.classList.add("invisivel");
+    
+    var thead = document.createElement("thead");
+    thead.appendChild(criarTd("Status Base"));
+    
+    var tbody = document.createElement("tbody");
+    
+    resultado.stats.forEach(function(stat){
+        var tr = document.createElement("tr");
+        tr.appendChild(criarTd(stat.stat.name));
+        tr.appendChild(criarTd(stat.base_stat));
+        
+        tbody.appendChild(tr);
+    });
+    
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    
+    return table;
+}
+
+function criarTd(conteudo) {
+    
+    var td = document.createElement("td");
+    td.textContent = conteudo;
+    
+    return td;
 }
