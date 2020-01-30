@@ -1,3 +1,55 @@
+body {
+    font-family: 'Cambay', sans-serif;
+    text-align: center;
+
+    background-image: url("https://i.pinimg.com/originals/d0/69/03/d0690374ab3b741bd9b95f3d30859248.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    color: white;
+}
+
+table {
+    margin: auto;
+}
+
 .invisivel {
     display: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.bg {
+    background: rgba(72, 65, 89, 0.7);
+}
+
+figure {
+    border: thin silver solid;
+}
+
+/*Buttons customizados a partir do site w3schools*/
+button {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  padding: 14px 40px;
+  background-color: white;
+}
+
+button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
